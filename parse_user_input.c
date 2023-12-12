@@ -9,20 +9,23 @@
  *
  * @input: the user's input which is the string to split
  *
- * Return: nothing
+ * Return: the array that stored input token
  *
 */
-void *parse_user_input(char *input)
+char *parse_user_input(char *input)
 {
 	char *delimiter = " ";
 	char *input_token;
 	char **stored_token;
-	int token_count = 0, index;
+	int token_count = 0;
 
-	stored_token = malloc(MAX_TOKEN * sizeof (char *));
+	stored_token = malloc(MAX_TOKEN * sizeof(char *));
 
 	if (stored_token == NULL)
+	{
+		perror("Memory allocation error\n");
 		exit(EXIT_FAILURE);
+	}
 
 	input_token = strtok(input, delimiter);
 
@@ -33,6 +36,5 @@ void *parse_user_input(char *input)
 		input_token = strtok(NULL, delimiter);
 	}
 	stored_token[token_count] = NULL;
-
-	free(stored_token); /*free à mettre dans une autre fonction après avoir utiliser cette fonction pour trouver le chemin de la commande*/
+	return (*stored_token);
 }
