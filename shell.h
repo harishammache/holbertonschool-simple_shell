@@ -15,14 +15,19 @@
  * Each directory is a pointer to the first node of a linked list
  * @next: pointer to the next node
 */
-typedef struct node
+typedef struct path_node
 {
 	char *directory;
-	struct node *next;
+	struct path_node *next;
 } path_list;
 
+int _strlen(const char *s);
+
+extern char **environ;
+char *get_path();
 int main(int argc, char **argv);
-void *parse_user_input(char *input);
+char *parse_user_input(char *input);
 path_list *create_path_list (char *path);
+char *search_executable_files(path_list *head, const char *user_input);
 
 #endif
