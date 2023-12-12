@@ -10,6 +10,8 @@
 */
 path_list *create_path_list (char *path)
 {
+	/*utiliser extern char **environ pour récuperer les répertoires dans PATH*/
+
 	path_list *head = NULL;
 	path_list *tail = NULL;
 	path_list *new_node = NULL;
