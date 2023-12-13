@@ -27,9 +27,10 @@ int main(void)
 			printf("\n");
 			break;
 		}
+
 		input[strcspn(input, "\n")] = 0;
 
-		if (strcmp(input, "exit\n") == 0)
+		if (strcmp(input, "exit") == 0)
 			break;
 		if (strcmp(input, "env\n") == 0)
 		{
@@ -48,9 +49,8 @@ int main(void)
 		/*in child process*/
 		if (process_id == 0)
 		{
-
 			execute_command(input);
-				printf("%d\n", process_id);
+			printf("%d\n", process_id);
 		}
 		/*in parent process*/
 		else if (process_id > 0)
