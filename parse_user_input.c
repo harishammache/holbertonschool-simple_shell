@@ -12,7 +12,7 @@
  * Return: the array that stored input token
  *
 */
-char *parse_user_input(char *input)
+char **parse_user_input(char *input)
 {
 	char *delimiter = " ";
 	char *input_token;
@@ -29,12 +29,15 @@ char *parse_user_input(char *input)
 
 	input_token = strtok(input, delimiter);
 
-	while (input_token != NULL && token_count < MAX_TOKEN - 1)
+	while (input_token != NULL && token_count < MAX_TOKEN)
 	{
-		stored_token[token_count] = strdup(input_token);
-		token_count++;
+		if (_strlen(input_token) > 0)
+		{
+			stored_token[token_count] = strdup(input_token);
+			token_count++;
+		}
 		input_token = strtok(NULL, delimiter);
 	}
 	stored_token[token_count] = NULL;
-	return (*stored_token);
+	return (stored_token);
 }
