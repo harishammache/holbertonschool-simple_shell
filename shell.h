@@ -7,9 +7,10 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <sys/wait.h>
 
 /**
- * struct node - node of the path
+ * struct path_node - node of the path
  *
  * @directory: contains a directory
  * Each directory is a pointer to the first node of a linked list
@@ -24,10 +25,13 @@ typedef struct path_node
 int _strlen(const char *s);
 
 extern char **environ;
+
 char *get_path();
 int main(int argc, char **argv);
-char *parse_user_input(char *input);
+char **parse_user_input(char *input);
 path_list *create_path_list (char *path);
 char *search_executable_files(path_list *head, const char *user_input);
+int implement_builtin_command(char **command);
+void execute_command(char *input);
 
 #endif
