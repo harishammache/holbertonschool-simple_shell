@@ -31,7 +31,7 @@ char **parse_user_input(char *input)
 
 	while (input_token != NULL && token_count < MAX_TOKEN)
 	{
-		if (_strlen(input_token) > 0)
+		if (strlen(input_token) > 0)
 		{
 			stored_token[token_count] = strdup(input_token);
 			token_count++;
