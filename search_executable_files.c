@@ -17,7 +17,7 @@ char *search_executable_files(path_list *head, const char *command)
 	while (head != NULL)
 	{
 		result = NULL;
-		pathname = malloc(_strlen(head->directory) + _strlen(command) + 2);
+		pathname = malloc(strlen(head->directory) + strlen(command) + 2);
 		if (pathname == NULL)
 		{
 			perror("Memory allocation failed");
