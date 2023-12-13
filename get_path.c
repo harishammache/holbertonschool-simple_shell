@@ -8,7 +8,6 @@
 */
 char *get_path()
 {
-	extern char **environ;
 	char **variable_in_environ = environ;
 	char *path = NULL;
 	char *path_copy;
