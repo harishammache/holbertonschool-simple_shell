@@ -22,12 +22,10 @@ typedef struct path_node
 	struct path_node *next;
 } path_list;
 
-int _strlen(const char *s);
-
 extern char **environ;
 
 char *get_path();
-int main(int argc, char **argv);
+int main(void);
 char **parse_user_input(char *input);
 path_list *create_path_list (char *path);
 char *search_executable_files(path_list *head, const char *user_input);
