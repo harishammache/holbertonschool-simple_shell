@@ -10,8 +10,6 @@
 */
 path_list *create_path_list (char *path)
 {
-	/*utiliser extern char **environ pour récuperer les répertoires dans PATH*/
-
 	path_list *head = NULL;
 	path_list *tail = NULL;
 	path_list *new_node = NULL;
@@ -22,7 +20,10 @@ path_list *create_path_list (char *path)
 	{
 		new_node = malloc(sizeof(path_list));
 		if (new_node == NULL)
+		{
+			perror("Memory allocation error\n");
 			return (NULL);
+		}
 
 		new_node->directory = strdup(directory);
 		new_node->next = NULL;
@@ -39,6 +40,5 @@ path_list *create_path_list (char *path)
 		}
 		directory = strtok(NULL, ":");
 	}
-	free(new_node);
 	return (head);
 }
