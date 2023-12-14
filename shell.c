@@ -1,28 +1,24 @@
 #include "shell.h"
 /**
- * main - UNIX command line interpreter
- * @argv: Number of arguments passed to the program
- * @argc: Array of strings representing the arguments
+ * main - function as a basic UNIX shell interpreter, parsing user input, executing commands
+ *		And managing built-in operations like 'exit' and 'env'.
  *
  * Return: 0 if success , 1 if error
 */
 int main(void)
 {
 	pid_t process_id;
-	char *input = NULL;
+	char *input = NULL, **env = environ, **args;
 	size_t length = 0;
 	ssize_t read_byte;
-	char **env = environ;
-	char **args;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-		{
 			printf("hsh $ ");
-		}
+
 		read_byte = getline(&input, &length, stdin);
-		if(read_byte == -1)
+		if (read_byte == -1)
 		{
 			printf("\n");
 			break;
@@ -32,9 +28,10 @@ int main(void)
 
 		if (strcmp(input, "exit") == 0)
 			break;
+
 		if (strcmp(input, "env\n") == 0)
 		{
-			for(; *env != NULL; env++)
+			for (; *env != NULL; env++)
 			{
 				char *env_1 = *env;
 				printf("%s\n", env_1);
@@ -42,22 +39,18 @@ int main(void)
 		}
 
 		args = parse_user_input(input);
+
 		if (args == NULL)
 			continue;
 
 		process_id = fork();
-		/*in child process*/
 		if (process_id == 0)
 		{
-			execute_command(input);
-			printf("%d\n", process_id);
+			execute_command(args);
+			/*printf("%d\n", process_id); affiche un 0 */
 		}
-		/*in parent process*/
 		else if (process_id > 0)
-		{
 			wait(NULL);
-		}
-		/* if fork failes*/
 		else
 		{
 			perror("error");
