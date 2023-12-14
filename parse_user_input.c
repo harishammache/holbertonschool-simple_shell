@@ -2,10 +2,7 @@
 
 #define MAX_TOKEN 1024
 /**
- * parse_user_input - Parse user's input by
- *					reading the input and split it into token.
- *					The function will be use later to find
- *					the path of the command.
+ * parse_user_input - Function that read the user input & split it into token.
  *
  * @input: the user's input which is the string to split
  *
