@@ -1,29 +1,25 @@
 #include "shell.h"
 /**
- * execute_command - execute command no matter which one is
+ * execute_command - execute each command write on the terminal
  *
- * @input: the cuser input on the terminal
+ * @input: the user input on the terminal
  *
  * Return: nothing
 */
-void execute_command(char *input)
+void execute_command(char **input)
 {
-	char *command_path, *args[2];
-	path_list *directories;
-	char *path;
+	char *command_path;
+	char *path = get_path();
+	path_list *directories = create_path_list(path);
 
-	path = get_path();
-	directories = create_path_list(path);
+	command_path = search_executable_files(directories, input[0]);
 
-	command_path = search_executable_files(directories, input);
 	if (command_path != NULL)
 	{
-		args[0] = command_path;
-		args[1] = NULL;
-		execv(command_path, args);
+		execve(command_path, input, environ);
 	}
 	else
 	{
-		printf("Command not found: %s\n", input);
+		printf("Command not found: %s\n", *input);
 	}
 }
