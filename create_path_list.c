@@ -21,7 +21,7 @@ path_list *create_path_list (char *path)
 		new_node = malloc(sizeof(path_list));
 		if (new_node == NULL)
 		{
-			perror("Memory allocation error\n");
+			perror("Memory allocation error");
 			return (NULL);
 		}
 

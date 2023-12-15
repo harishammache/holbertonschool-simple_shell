@@ -20,7 +20,7 @@ char **parse_user_input(char *input)
 
 	if (stored_token == NULL)
 	{
-		perror("Memory allocation error\n");
+		perror("Memory allocation error");
 		exit(EXIT_FAILURE);
 	}
 
