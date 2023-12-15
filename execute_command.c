@@ -18,6 +18,10 @@ void execute_command(char **input)
 	{
 		execve(command_path, input, environ);
 	}
+	if (strncmp(input[0], "/bin/", 5) == 0)
+	{
+		execve(input[0], input, environ);
+	}
 	else
 	{
 		printf("Command not found: %s\n", *input);
