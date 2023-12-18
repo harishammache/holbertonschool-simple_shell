@@ -7,12 +7,12 @@
  * @head: the head of the simply linked llist
  * @command: the command to search on the PATH
  *
- * Return: the path of the file
+ * Return: NULL if any executable file match with 'command'
 */
 char *search_executable_files(path_list *head, const char *command)
 {
-	char *pathname = NULL;
-	char *result = NULL;
+	char *pathname;
+	char *result;
 
 	while (head != NULL)
 	{
@@ -34,13 +34,10 @@ char *search_executable_files(path_list *head, const char *command)
 				free(pathname);
 				return (NULL);
 			}
-			free(pathname);
 			return (result);
 		}
-
 		free(pathname);
 		head = head->next;
 	}
-	free(pathname);
 	return (NULL);
 }
