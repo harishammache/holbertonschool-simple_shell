@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
- * main - function as a basic UNIX shell interpreter, parsing user input, executing commands
- *		And managing built-in operations like 'exit' and 'env'.
+ * main - function as a basic UNIX shell interpreter, parsing user input
+ *		executing commands & managing built-in operations like 'exit' and 'env'
  *
  * Return: 0 if success , 1 if error
 */
@@ -34,6 +34,7 @@ int main(void)
 			for (; *env != NULL; env++)
 			{
 				char *env_1 = *env;
+
 				printf("%s\n", env_1);
 			}
 		}
@@ -57,5 +58,6 @@ int main(void)
 			return (1);
 		}
 	}
+	free(parse_user_input(input));
 	return (0);
 }
