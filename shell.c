@@ -7,15 +7,14 @@
 */
 int main(void)
 {
-	pid_t process_id;
-	char *input = NULL, **env = environ, **args;
+	char *input = NULL, **env = environ;
 	size_t length = 0;
 	ssize_t read_byte;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("hsh $ ");
+			printf("$ ");
 
 		read_byte = getline(&input, &length, stdin);
 		if (read_byte == -1)
@@ -39,25 +38,10 @@ int main(void)
 			}
 		}
 
-		args = parse_user_input(input);
-
-		if (args == NULL)
-			continue;
-
-		process_id = fork();
-		if (process_id == 0)
+		if (handle_command(input) != 0)
 		{
-			execute_command(args);
-			/*printf("%d\n", process_id); affiche un 0 */
-		}
-		else if (process_id > 0)
-			wait(NULL);
-		else
-		{
-			perror("error");
-			return (1);
+			fprintf(stderr, "Command execution failed: %s\n", input);
 		}
 	}
-	free(parse_user_input(input));
 	return (0);
 }
