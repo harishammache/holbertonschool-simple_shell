@@ -41,5 +41,6 @@ char *search_executable_files(path_list *head, const char *command)
 		free(pathname);
 		head = head->next;
 	}
-	return (result);
+	free(pathname);
+	return (NULL);
 }
