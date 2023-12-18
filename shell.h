@@ -30,5 +30,6 @@ char **parse_user_input(char *input);
 path_list *create_path_list (char *path);
 char *search_executable_files(path_list *head, const char *user_input);
 void execute_command(char **input);
+int handle_command(char *command);
 
 #endif
