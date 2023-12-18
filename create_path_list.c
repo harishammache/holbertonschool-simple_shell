@@ -40,6 +40,5 @@ path_list *create_path_list (char *path)
 		}
 		directory = strtok(NULL, ":");
 	}
-	free(new_node);
 	return (head);
 }
