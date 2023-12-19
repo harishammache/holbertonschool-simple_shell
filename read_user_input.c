@@ -4,7 +4,7 @@
  *
  * @input: the user input
  *
- * Return: 2 if success
+ * Return: 2 if success, 1 if success but user input is empty, 0 if it's failed
 */
 int read_user_input(char **input)
 {
