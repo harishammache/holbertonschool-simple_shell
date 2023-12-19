@@ -11,13 +11,14 @@ int read_user_input(char **input)
 	size_t length = 0;
 	ssize_t read_byte;
 
-	read_byte = getline(input, &length, stdin);
-	if (read_byte < 0)
+	if (*input != NULL)
 	{
-		if (*input != NULL)
-		{
-			free(*input);
-		}
+		free(*input);
+	}
+
+	read_byte = getline(input, &length, stdin);
+	if (read_byte == -1)
+	{
 		return (0);
 	}
 
