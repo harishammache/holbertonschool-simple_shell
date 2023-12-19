@@ -27,4 +27,5 @@ void execute_command(char **input)
 		printf("Command not found: %s\n", *input);
 		free(*input);
 	}
+	free(path);
 }
