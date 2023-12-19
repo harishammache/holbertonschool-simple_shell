@@ -31,6 +31,6 @@ path_list *create_path_list (char *path);
 char *search_executable_files(path_list *head, const char *user_input);
 void execute_command(char **input);
 int handle_command(char *command);
-void free_allocate_memory(char **command, char *input, int *size);
+int read_user_input(char **input);
 
 #endif
