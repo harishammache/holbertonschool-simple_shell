@@ -32,5 +32,6 @@ char *search_executable_files(path_list *head, const char *user_input);
 void execute_command(char **input);
 int handle_command(char *command);
 int read_user_input(char **input);
+void print_environnement(void);
 
 #endif
