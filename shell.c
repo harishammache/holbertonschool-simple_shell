@@ -19,15 +19,19 @@ int main(void)
 		if (result == 0)
 		{
 			printf("\n");
+			free(input);
 			return (0);
 		}
 
 		if (strcmp(input, "exit") == 0)
+		{
 			break;
+		}
 
 		if (strcmp(input, "env\n") == 0)
 		{
 			print_environnement();
+			free(input);
 			return (0);
 		}
 
