@@ -13,13 +13,14 @@ int handle_command(char *command)
 
 	if (args == NULL)
 	{
-		return (-1);
+		exit(0);
 	}
 
 	process_id = fork();
 	if (process_id == 0)
 	{
 		execute_command(args);
+		free(args);
 		exit(0);
 	}
 	else if (process_id > 0)
@@ -29,5 +30,6 @@ int handle_command(char *command)
 		perror("error");
 		return (1);
 	}
+	free(args);
 	return (0);
 }
