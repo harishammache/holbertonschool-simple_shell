@@ -10,9 +10,11 @@ int handle_command(char *command)
 {
 	pid_t process_id;
 	char **args = parse_user_input(command);
+	path_list *directories = create_path_list(get_path());
 
 	if (args == NULL)
 	{
+		free_path_list(directories);
 		exit(0);
 	}
 
@@ -20,6 +22,7 @@ int handle_command(char *command)
 	if (process_id == 0)
 	{
 		execute_command(args);
+		free_path_list(directories);
 		free(args);
 		exit(0);
 	}
@@ -28,8 +31,11 @@ int handle_command(char *command)
 	else
 	{
 		perror("error");
+		free_path_list(directories);
+		free(args);
 		return (1);
 	}
+	free_path_list(directories);
 	free(args);
 	return (0);
 }

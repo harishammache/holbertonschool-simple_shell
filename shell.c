@@ -37,7 +37,6 @@ int main(void)
 			free(input);
 		}
 	}
-
 	if (input != NULL)
 		free(input);
 
