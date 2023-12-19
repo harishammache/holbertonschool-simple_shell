@@ -9,25 +9,26 @@ int main(void)
 {
 	char *input = NULL, **env = environ;
 	size_t length = 0;
-	ssize_t read_byte;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
 
-		read_byte = getline(&input, &length, stdin);
-		if (read_byte == -1)
+		if (getline(&input, &length, stdin) < 0)
 		{
+			free_allocate_memory(NULL, input, NULL);
 			printf("\n");
-			break;
+			return (1);
 		}
 
 		input[strcspn(input, "\n")] = 0;
 
+		if (strlen(input) == 0)
+			return (1);
+
 		if (strcmp(input, "exit") == 0)
 			break;
-
 		if (strcmp(input, "env\n") == 0)
 		{
 			for (; *env != NULL; env++)
@@ -37,11 +38,13 @@ int main(void)
 				printf("%s\n", env_1);
 			}
 		}
-
 		if (handle_command(input) != 0)
 		{
 			fprintf(stderr, "Command execution failed: %s\n", input);
+			free(input);
 		}
+		free(input);
+		input = NULL;
 	}
 	return (0);
 }

@@ -12,11 +12,16 @@
 char *search_executable_files(path_list *head, const char *command)
 {
 	char *pathname;
-	char *result;
+	char *result = NULL;
+
+	if (head == NULL || head->directory == NULL)
+	{
+		fprintf(stderr, "Invalid path\n");
+		return (NULL);
+	}
 
 	while (head != NULL)
 	{
-		result = NULL;
 		pathname = malloc(strlen(head->directory) + strlen(command) + 2);
 		if (pathname == NULL)
 		{
