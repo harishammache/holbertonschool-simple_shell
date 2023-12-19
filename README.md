@@ -84,5 +84,5 @@ drwxr-xr-x 1 vscode vscode  4096 Dec 15 11:46 .git
 
 ## Authors
 
-- [@Sarah BOUTIER](https://github.com/savvyhe)
+- [@Sarah BOUTIER](https://github.com/savvyh)
 - [@Haris HAMMACHE](https://github.com/harishammache)
