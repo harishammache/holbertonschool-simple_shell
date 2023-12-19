@@ -11,10 +11,8 @@ int read_user_input(char **input)
 	size_t length = 0;
 	ssize_t read_byte;
 
-	if (*input != NULL)
-	{
-		free(*input);
-	}
+	free(*input);
+	*input = NULL;
 
 	read_byte = getline(input, &length, stdin);
 	if (read_byte == -1)
@@ -23,16 +21,12 @@ int read_user_input(char **input)
 	}
 
 	(*input)[strcspn(*input, "\n")] = 0;
-
 	if (strlen(*input) == 0)
 	{
-		if (*input != NULL)
-		{
-			free(*input);
-		}
+		free(*input);
+		input = NULL;
 		return (1);
 	}
 
 	return (2);
 }
-
