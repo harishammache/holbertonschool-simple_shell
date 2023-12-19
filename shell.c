@@ -25,7 +25,10 @@ int main(void)
 		input[strcspn(input, "\n")] = 0;
 
 		if (strlen(input) == 0)
+		{
 			return (1);
+			free(input);
+		}
 
 		if (strcmp(input, "exit") == 0)
 			break;
@@ -43,8 +46,6 @@ int main(void)
 			fprintf(stderr, "Command execution failed: %s\n", input);
 			free(input);
 		}
-		free(input);
-		input = NULL;
 	}
 	return (0);
 }

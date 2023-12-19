@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * handle_command - execute the provided command
+ * handle_command - execute the provided command if all condition
  *
  * @command: the command to execute
  *
