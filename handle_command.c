@@ -11,11 +11,13 @@ int handle_command(char *command)
 	pid_t process_id;
 	char **args = parse_user_input(command);
 	path_list *directories = create_path_list(get_path());
+	int status = 0;
 
-	if (args == NULL)
+	if (args == NULL || directories == NULL)
 	{
 		free_path_list(directories);
-		exit(0);
+		free_tokens(args);
+		return (1);
 	}
 
 	process_id = fork();
@@ -24,18 +26,19 @@ int handle_command(char *command)
 		execute_command(args);
 		free_path_list(directories);
 		free(args);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	else if (process_id > 0)
-		wait(NULL);
+		wait(&status);
 	else
 	{
 		perror("error");
 		free_path_list(directories);
 		free(args);
-		return (1);
+		status = 1;
 	}
 	free_path_list(directories);
-	free(args);
-	return (0);
+	free_tokens(args);
+
+	return (status);
 }
