@@ -7,7 +7,7 @@
 */
 int main(void)
 {
-	char *input = NULL, **env = environ;
+	char *input = NULL;
 	int result;
 
 	while (1)
@@ -27,12 +27,8 @@ int main(void)
 
 		if (strcmp(input, "env\n") == 0)
 		{
-			for (; *env != NULL; env++)
-			{
-				char *env_1 = *env;
-
-				printf("%s\n", env_1);
-			}
+			print_environnement();
+			return (0);
 		}
 
 		if (handle_command(input) != 0)
