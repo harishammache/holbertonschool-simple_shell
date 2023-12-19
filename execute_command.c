@@ -12,13 +12,25 @@ void execute_command(char **input)
 	char *path = get_path();
 	path_list *directories = create_path_list(path);
 
+	if (input == NULL || *input == NULL)
+	{
+		printf("Invalid input\n");
+		return;
+	}
+
+	if (directories == NULL || path == NULL)
+	{
+		free_path_list(directories);
+		free(path);
+		return;
+	}
 	command_path = search_executable_files(directories, input[0]);
 
 	if (command_path != NULL)
 	{
 		execve(command_path, input, environ);
 	}
-	if (strncmp(input[0], "/bin/", 5) == 0)
+	else if (strncmp(input[0], "/bin/", 5) == 0)
 	{
 		execve(input[0], input, environ);
 	}
@@ -27,5 +39,16 @@ void execute_command(char **input)
 		printf("Command not found: %s\n", *input);
 		free(*input);
 	}
+
+	if(command_path != NULL)
+	{
+		free(command_path);
+	}
+	else
+	{
+		free(*input);
+	}
+	free(command_path);
+	free_path_list(directories);
 	free(path);
 }
