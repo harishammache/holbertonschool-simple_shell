@@ -1,6 +1,5 @@
 #include "shell.h"
 
-#define MAX_PATH_LENGTH 1024
 /**
  * get_path - function that get the original PATH and all his variable.
  *
