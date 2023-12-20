@@ -14,7 +14,7 @@ void execute_command(char **input)
 
 	if (input == NULL || *input == NULL)
 	{
-		printf("Invalid input\n");
+		/*printf("Invalid input\n");*/
 		return;
 	}
 
