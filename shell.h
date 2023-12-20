@@ -35,5 +35,6 @@ int read_user_input(char **input);
 int print_environnement(void);
 void free_path_list(path_list *head);
 void free_tokens(char **tokens);
+char *_getenv(const char *name);
 
 #endif
