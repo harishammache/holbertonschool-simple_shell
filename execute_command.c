@@ -8,8 +8,7 @@
 */
 void execute_command(char **input)
 {
-	char *command_path;
-	char *path = get_path();
+	char *command_path, *path = _getenv("PATH");
 	path_list *directories = create_path_list(path);
 
 	if (input == NULL || *input == NULL)
@@ -17,7 +16,6 @@ void execute_command(char **input)
 		printf("Invalid input\n");
 		return;
 	}
-
 	if (directories == NULL || path == NULL)
 	{
 		free_path_list(directories);
@@ -25,7 +23,6 @@ void execute_command(char **input)
 		return;
 	}
 	command_path = search_executable_files(directories, input[0]);
-
 	if (command_path != NULL)
 	{
 		execve(command_path, input, environ);
@@ -39,8 +36,7 @@ void execute_command(char **input)
 		printf("Command not found: %s\n", *input);
 		free(*input);
 	}
-
-	if(command_path != NULL)
+	if (command_path != NULL)
 	{
 		free(command_path);
 	}
