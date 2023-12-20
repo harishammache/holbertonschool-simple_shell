@@ -9,7 +9,7 @@
 void execute_command(char **input)
 {
 	char *command_path;
-	char *path = get_path();
+	char *path = _getenv("PATH");
 	path_list *directories = create_path_list(path);
 
 	if (input == NULL || *input == NULL)
