@@ -21,7 +21,7 @@ int main(void)
 		result = read_user_input(&input);
 		if (result == 0)
 		{
-			printf("\n");
+			/*printf("\n");*/
 			free(input);
 			return (0);
 		}
@@ -43,8 +43,8 @@ int main(void)
 			/*free(input);*/
 		}
 	}
-	if (input != NULL)
-		free(input);
+	/*if (input != NULL)*/
+	free(input);
 
 	return (0);
 }
