@@ -40,10 +40,11 @@ int main(void)
 		if (handle_command(input) != 0)
 		{
 			fprintf(stderr, "Command execution failed: %s\n", input);
-			free(input);
+			/*free(input);*/
 		}
 	}
 	if (input != NULL)
 		free(input);
+
 	return (0);
 }
