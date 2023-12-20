@@ -7,9 +7,12 @@
 */
 int main(void)
 {
-	char *input = NULL;
+	char *input = NULL, *path;
 	int result;
 
+	path = _getenv("PATH");
+	if (path == NULL)
+		return (-1);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
