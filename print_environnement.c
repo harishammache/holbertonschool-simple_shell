@@ -2,15 +2,16 @@
 /**
  * print_environnement - function that print the 'env' of the PATH
  *
- * Return: Nothing
+ * Return: 0 on success
 */
-void print_environnement(void)
+int print_environnement(void)
 {
-	char **env_variable = environ;
+	int index = 0;
 
-	while (*env_variable != NULL)
+	for (index = 0; environ[index] != NULL; index++)
 	{
-		printf("%s\n", *env_variable);
-		env_variable++;
+		printf("%s\n", environ[index]);
 	}
+
+	return (0);
 }
