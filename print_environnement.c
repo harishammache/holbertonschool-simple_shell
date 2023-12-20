@@ -2,7 +2,7 @@
 /**
  * print_environnement - function that print the 'env' of the PATH
  *
- * Return: Nothing
+ * Return: 0 on success
 */
 int print_environnement(void)
 {
