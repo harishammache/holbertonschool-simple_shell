@@ -35,7 +35,7 @@ void execute_command(char **input)
 	else
 	{
 		printf("Command not found: %s\n", *input);
-		free(*input);
+		/*free(*input);*/
 	}
 
 	if (command_path != NULL)
