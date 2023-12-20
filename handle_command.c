@@ -8,15 +8,17 @@
 */
 int handle_command(char *command)
 {
+	char *path = get_path();
 	pid_t process_id;
 	char **args = parse_user_input(command);
-	path_list *directories = create_path_list(get_path());
+	path_list *directories = create_path_list(path);
 	int status = 0;
 
 	if (args == NULL || directories == NULL)
 	{
 		free_path_list(directories);
 		free_tokens(args);
+		free(path);
 		return (1);
 	}
 
@@ -26,6 +28,7 @@ int handle_command(char *command)
 		execute_command(args);
 		free_path_list(directories);
 		free(args);
+		free(path);
 		exit(EXIT_SUCCESS);
 	}
 	else if (process_id > 0)
@@ -35,10 +38,12 @@ int handle_command(char *command)
 		perror("error");
 		free_path_list(directories);
 		free(args);
+		free(path);
 		status = 1;
 	}
 	free_path_list(directories);
 	free_tokens(args);
+	free(path);
 
 	return (status);
 }
