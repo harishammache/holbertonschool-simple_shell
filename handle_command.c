@@ -8,7 +8,7 @@
 */
 int handle_command(char *command)
 {
-	char *path = get_path();
+	char *path = _getenv("PATH");
 	pid_t process_id;
 	char **args = parse_user_input(command);
 	path_list *directories = create_path_list(path);
