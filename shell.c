@@ -30,7 +30,6 @@ int main(void)
 		{
 			break;
 		}
-
 		if (strcmp(input, "env\n") == 0)
 		{
 			print_environnement();
@@ -46,6 +45,5 @@ int main(void)
 	}
 	if (input != NULL)
 		free(input);
-
 	return (0);
 }
