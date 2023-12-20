@@ -31,6 +31,7 @@ char *get_path()
 	if (path_copy == NULL)
 	{
 		perror("Error duplicating PATH");
+		free(path_copy);
 		exit(EXIT_FAILURE);
 	}
 	return (path_copy);
