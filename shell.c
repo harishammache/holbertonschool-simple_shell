@@ -28,7 +28,8 @@ int main(void)
 
 		if (strcmp(input, "exit") == 0)
 		{
-			break;
+			free(input);
+			exit(EXIT_SUCCESS);
 		}
 		if (strcmp(input, "env\n") == 0)
 		{
@@ -43,7 +44,6 @@ int main(void)
 			/*free(input);*/
 		}
 	}
-	/*if (input != NULL)*/
 	free(input);
 
 	return (0);
