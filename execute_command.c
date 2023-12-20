@@ -8,13 +8,16 @@
 */
 void execute_command(char **input)
 {
-	char *command_path;
-	char *path = get_path();
+	char *command_path, *path = get_path();
 	path_list *directories = create_path_list(path);
 
-	if (input == NULL || *input == NULL)
+	if (input == NULL || *input == NULL || path == NULL)
 	{
 		/*printf("Invalid input\n");*/
+		free(*input);
+		free(input);
+		free(path);
+		free_path_list(directories);
 		return;
 	}
 
@@ -33,10 +36,7 @@ void execute_command(char **input)
 		execve(input[0], input, environ);
 
 	else
-	{
 		printf("Command not found: %s\n", *input);
-		/*free(*input);*/
-	}
 
 	if (command_path != NULL)
 		free(command_path);
