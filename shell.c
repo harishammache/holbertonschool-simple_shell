@@ -23,6 +23,11 @@ int main(__attribute__((unused)) int argc, char *argv[])
 		result = read_user_input(&input);
 		if (result == 0)
 		{
+			if (feof(stdin))
+			{
+				free(input);
+				exit(EXIT_SUCCESS);
+			}
 			free(input);
 			return (0);
 		}
@@ -42,12 +47,7 @@ int main(__attribute__((unused)) int argc, char *argv[])
 			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], input);
 			free(input);
 		}
-		free(input);
 	}
-	if (feof(stdin))
-	{
-		free(input);
-		exit(EXIT_SUCCESS);
-	}
+	free(input);
 	return (0);
 }
