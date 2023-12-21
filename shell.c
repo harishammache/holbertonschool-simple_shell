@@ -3,9 +3,12 @@
  * main - function as a basic UNIX shell interpreter, parsing user input
  *		executing commands & managing built-in operations like 'exit' and 'env'
  *
+ * @argc: number of arguments passed to the program
+ * @argv: array of strings representing the arguments
+ *
  * Return: 0 if success , 1 if error
 */
-int main(void)
+int main(__attribute__((unused)) int argc, char *argv[])
 {
 	char *input = NULL, *path;
 	int result;
@@ -38,10 +41,9 @@ int main(void)
 			return (0);
 		}
 
-		if (handle_command(input) != 0)
+		if (handle_command(input, argv[0]) != 0)
 		{
-			fprintf(stderr, "Command execution failed: %s\n", input);
-			/*free(input);*/
+			fprintf(stderr, "%s: 1: %d: not found\n", argv[0], *input);
 		}
 	}
 	free(input);
