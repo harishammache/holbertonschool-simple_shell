@@ -39,11 +39,12 @@ char *search_executable_files(path_list *head, const char *command)
 				free(pathname);
 				return (NULL);
 			}
+			free(pathname);
 			return (result);
 		}
 		free(pathname);
 		head = head->next;
 	}
-	free(result);
+	/*free(result);*/
 	return (NULL);
 }
