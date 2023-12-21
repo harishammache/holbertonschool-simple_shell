@@ -11,10 +11,8 @@ void execute_command(char **input)
 	char *command_path, *path = get_path();
 	path_list *directories = create_path_list(path);
 
-	if (input == NULL || *input == NULL || path == NULL)
+	if (input == NULL || *input == NULL)
 	{
-		/*printf("Invalid input\n");*/
-		free(*input);
 		free(input);
 		free(path);
 		free_path_list(directories);
@@ -38,12 +36,7 @@ void execute_command(char **input)
 	else
 		printf("Command not found: %s\n", *input);
 
-	if (command_path != NULL)
-		free(command_path);
-	else
-		free(*input);
-
-	free(command_path);
+	free(*input);
 	free_path_list(directories);
 	free(path);
 }
