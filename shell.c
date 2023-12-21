@@ -46,6 +46,10 @@ int main(__attribute__((unused)) int argc, char *argv[])
 			free(input);
 		}
 	}
-	free(input);
+	if (feof(stdin))
+	{
+		free(input);
+		exit(EXIT_SUCCESS);
+	}
 	return (0);
 }
