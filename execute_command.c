@@ -14,7 +14,7 @@ void execute_command(char **input, char *program_name)
 
 	if (input == NULL || *input == NULL)
 	{
-		free(input);
+		/*free(input);*/
 		free(path);
 		free_path_list(directories);
 		return;
@@ -24,6 +24,7 @@ void execute_command(char **input, char *program_name)
 	{
 		free_path_list(directories);
 		free(path);
+		free_tokens(input);
 		return;
 	}
 	command_path = search_executable_files(directories, input[0]);
@@ -37,8 +38,7 @@ void execute_command(char **input, char *program_name)
 	else
 	{
 		fprintf(stderr, "%s: 1: %s: not found\n", program_name, *input);
-		free(*input);
-		free(input);
+		/*free(*input);*/
 	}
 
 	free_path_list(directories);
