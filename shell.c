@@ -42,7 +42,7 @@ int main(__attribute__((unused)) int argc, char *argv[])
 
 		if (handle_command(input, argv[0]) != 0)
 		{
-			fprintf(stderr, "%s: 1: %d: not found\n", argv[0], *input);
+			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], input);
 			free(input);
 		}
 	}
