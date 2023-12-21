@@ -3,10 +3,11 @@
  * execute_command - execute each command write on the terminal
  *
  * @input: the user input on the terminal
+ * @program_name: the name of the program to passed on argument
  *
  * Return: nothing
 */
-void execute_command(char **input)
+void execute_command(char **input, char *program_name)
 {
 	char *command_path, *path = get_path();
 	path_list *directories = create_path_list(path);
@@ -34,7 +35,7 @@ void execute_command(char **input)
 		execve(input[0], input, environ);
 
 	else
-		printf("Command not found: %s\n", *input);
+		fprintf(stderr, "%s: 1: %s: not found\n", program_name, *input);
 
 	free(*input);
 	free_path_list(directories);

@@ -25,12 +25,12 @@ typedef struct path_node
 extern char **environ;
 
 char *get_path();
-int main(void);
+int main(__attribute__((unused)) int argc, char *argv[]);
 char **parse_user_input(char *input);
 path_list *create_path_list (char *path);
 char *search_executable_files(path_list *head, const char *user_input);
-void execute_command(char **input);
-int handle_command(char *command);
+void execute_command(char **input, char *program_name);
+int handle_command(char *command, char *program_name);
 int read_user_input(char **input);
 int print_environnement(void);
 void free_path_list(path_list *head);
