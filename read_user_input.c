@@ -17,15 +17,7 @@ int read_user_input(char **input)
 	read_byte = getline(input, &length, stdin);
 	if (read_byte == -1)
 	{
-		if (feof(stdin))
-		{
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			perror("read_user_input error");
-			return (-1);
-		}
+		return (0);
 	}
 
 	(*input)[strcspn(*input, "\n")] = 0;
