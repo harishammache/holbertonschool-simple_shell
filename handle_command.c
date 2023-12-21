@@ -3,10 +3,11 @@
  * handle_command - execute the provided command if all condition
  *
  * @command: the command to execute
+ * @program_name: the name of the program to passed on argument
  *
  * Return: 0 on success, 1 on error
 */
-int handle_command(char *command)
+int handle_command(char *command, char *program_name)
 {
 	char *path = get_path();
 	pid_t process_id;
@@ -25,7 +26,7 @@ int handle_command(char *command)
 	process_id = fork();
 	if (process_id == 0)
 	{
-		execute_command(args);
+		execute_command(args, program_name);
 		free_path_list(directories);
 		free(args);
 		free(path);
