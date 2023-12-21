@@ -17,7 +17,11 @@ int read_user_input(char **input)
 	read_byte = getline(input, &length, stdin);
 	if (read_byte == -1)
 	{
-		return (0);
+		if(feof(stdin))
+		{
+			printf("\n");
+			return (0);
+		}
 	}
 
 	(*input)[strcspn(*input, "\n")] = 0;
