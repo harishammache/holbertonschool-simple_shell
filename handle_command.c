@@ -28,7 +28,7 @@ int handle_command(char *command, char *program_name)
 	{
 		execute_command(args, program_name);
 		free_path_list(directories);
-		free(args);
+		free_tokens(args);
 		free(path);
 		exit(EXIT_SUCCESS);
 	}
