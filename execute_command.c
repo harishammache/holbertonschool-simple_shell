@@ -38,9 +38,9 @@ void execute_command(char **input, char *program_name)
 	{
 		fprintf(stderr, "%s: 1: %s: not found\n", program_name, *input);
 		free(*input);
+		free(input);
 	}
 
-	free(*input);
 	free_path_list(directories);
 	free(path);
 }
