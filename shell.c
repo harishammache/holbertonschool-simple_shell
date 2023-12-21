@@ -11,7 +11,7 @@
 int main(__attribute__((unused)) int argc, char *argv[])
 {
 	char *input = NULL, *path;
-	/*int result;*/
+	int result;
 
 	path = _getenv("PATH");
 	if (path == NULL)
@@ -21,12 +21,12 @@ int main(__attribute__((unused)) int argc, char *argv[])
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
 
-		/*result =*/ read_user_input(&input);
-		/*if (result == 0)
+		result = read_user_input(&input);
+		if (result == 0)
 		{
 			free(input);
-			exit (EXIT_SUCCESS);
-		}*/
+			return (0);
+		}
 
 		if (strcmp(input, "exit") == 0)
 		{
