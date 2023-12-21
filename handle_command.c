@@ -15,7 +15,7 @@ int handle_command(char *command, char *program_name)
 	path_list *directories = create_path_list(path);
 	int status = 0;
 
-	if (args == NULL || directories == NULL)
+	if (args == NULL || directories == NULL || path == NULL)
 	{
 		free_path_list(directories);
 		free_tokens(args);
@@ -37,14 +37,11 @@ int handle_command(char *command, char *program_name)
 	else
 	{
 		perror("error");
-		free_path_list(directories);
-		free(args);
-		free(path);
 		status = 1;
 	}
+
 	free_path_list(directories);
 	free_tokens(args);
 	free(path);
-
 	return (status);
 }
