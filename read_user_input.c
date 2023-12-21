@@ -17,6 +17,7 @@ int read_user_input(char **input)
 	read_byte = getline(input, &length, stdin);
 	if (read_byte == -1)
 	{
+		printf("\n");
 		return (0);
 	}
 
