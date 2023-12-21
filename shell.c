@@ -24,7 +24,6 @@ int main(__attribute__((unused)) int argc, char *argv[])
 		result = read_user_input(&input);
 		if (result == 0)
 		{
-			/*printf("\n");*/
 			free(input);
 			return (0);
 		}
@@ -44,9 +43,9 @@ int main(__attribute__((unused)) int argc, char *argv[])
 		if (handle_command(input, argv[0]) != 0)
 		{
 			fprintf(stderr, "%s: 1: %d: not found\n", argv[0], *input);
+			free(input);
 		}
 	}
 	free(input);
-
 	return (0);
 }
