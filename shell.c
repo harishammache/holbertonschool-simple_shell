@@ -20,14 +20,12 @@ int main(__attribute__((unused)) int argc, char *argv[])
 	{
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
-
 		result = read_user_input(&input);
 		if (result == 0)
 		{
 			free(input);
 			return (0);
 		}
-
 		if (strcmp(input, "exit") == 0)
 		{
 			free(input);
@@ -39,12 +37,12 @@ int main(__attribute__((unused)) int argc, char *argv[])
 			free(input);
 			return (0);
 		}
-
 		if (handle_command(input, argv[0]) != 0)
 		{
 			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], input);
 			free(input);
 		}
+		free(input);
 	}
 	if (feof(stdin))
 	{
