@@ -25,7 +25,8 @@ int main(__attribute__((unused)) int argc, char *argv[])
 		if (result == 0)
 		{
 			free(input);
-			return (0);
+			printf("Exit shell\n");
+			exit(EXIT_SUCCESS);
 		}
 
 		if (strcmp(input, "exit") == 0)
