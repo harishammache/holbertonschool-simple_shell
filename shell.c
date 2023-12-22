@@ -40,7 +40,7 @@ int main(__attribute__((unused)) int argc, char *argv[])
 		{
 			print_environnement();
 			free(input);
-			return (0);
+			continue;
 		}
 		if (handle_command(input, argv[0]) != 0)
 		{
