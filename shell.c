@@ -16,10 +16,12 @@ int main(__attribute__((unused)) int argc, char *argv[])
 	path = _getenv("PATH");
 	if (path == NULL)
 		return (-1);
+
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
+
 		result = read_user_input(&input);
 		if (result == 0)
 		{
@@ -28,8 +30,6 @@ int main(__attribute__((unused)) int argc, char *argv[])
 				free(input);
 				exit(EXIT_SUCCESS);
 			}
-			free(input);
-			return (0);
 		}
 		if (strcmp(input, "exit") == 0)
 		{
