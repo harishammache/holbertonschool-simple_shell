@@ -30,17 +30,35 @@ char *search_executable_files(path_list *head, const char *command)
 		}
 
 		sprintf(pathname, "%s/%s", head->directory, command);
-		if (access(pathname, X_OK) == 0)
+		if (command[0] == '/' || command[0] == '.')
 		{
-			result = strdup(pathname);
-			if (result == NULL)
+			if (access(command, X_OK) == 0)
 			{
-				perror("Memory allocation failed");
+				result = strdup(command);
+				if (result == NULL)
+				{
+					perror("Memory allocation failed");
+					free(pathname);
+					return (NULL);
+				}
 				free(pathname);
-				return (NULL);
+				return (result);
 			}
-			free(pathname);
-			return (result);
+		}
+		else
+		{
+			if (access(pathname, X_OK) == 0)
+			{
+				result = strdup(pathname);
+				if (result == NULL)
+				{
+					perror("Memory allocation failed");
+					free(pathname);
+					return (NULL);
+				}
+				free(pathname);
+				return (result);
+			}
 		}
 		free(pathname);
 		head = head->next;
