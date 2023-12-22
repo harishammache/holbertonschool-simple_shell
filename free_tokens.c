@@ -12,6 +12,7 @@ void free_tokens(char **tokens)
 
 	if (tokens == NULL)
 	{
+		free(tokens);
 		return;
 	}
 
