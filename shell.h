@@ -37,5 +37,6 @@ int print_environnement(void);
 void free_path_list(path_list *head);
 void free_tokens(char **tokens);
 char *_getenv(const char *name);
+int check_access(const char *path);
 
 #endif
