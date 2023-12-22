@@ -1,5 +1,19 @@
 #include "shell.h"
-
+/**
+ * check_access - function that check the accessibility of a file to be execute
+ *
+ * @path: the path of the file to be checked for access
+ *
+ * Return: 1 if the file is accessible for execution, 0 otherwise
+*/
+int check_access(const char *path)
+{
+	if (access(path, X_OK) == 0)
+	{
+		return (1);
+	}
+	return (0);
+}
 /**
  * search_executable_files - function that take 2 inputs, just see below
  * It search the path of executable files
@@ -11,8 +25,7 @@
 */
 char *search_executable_files(path_list *head, const char *command)
 {
-	char *pathname;
-	char *result = NULL;
+	char *pathname, *result = NULL;
 
 	if (head == NULL || head->directory == NULL)
 	{
@@ -30,39 +43,24 @@ char *search_executable_files(path_list *head, const char *command)
 		}
 
 		sprintf(pathname, "%s/%s", head->directory, command);
-		if (command[0] == '/' || command[0] == '.')
+		if ((command[0] == '/' || command[0] == '.') && check_access(command))
 		{
-			if (access(command, X_OK) == 0)
-			{
-				result = strdup(command);
-				if (result == NULL)
-				{
-					perror("Memory allocation failed");
-					free(pathname);
-					return (NULL);
-				}
-				free(pathname);
-				return (result);
-			}
+			result = strdup(command);
 		}
-		else
+		else if (check_access(pathname))
 		{
-			if (access(pathname, X_OK) == 0)
-			{
-				result = strdup(pathname);
-				if (result == NULL)
-				{
-					perror("Memory allocation failed");
-					free(pathname);
-					return (NULL);
-				}
-				free(pathname);
-				return (result);
-			}
+			result = strdup(pathname);
 		}
+
+		if (result != NULL)
+		{
+			free(pathname);
+			return (result);
+		}
+
 		free(pathname);
 		head = head->next;
 	}
-	/*free(result);*/
+
 	return (NULL);
 }
