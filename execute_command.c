@@ -9,7 +9,7 @@
 */
 void execute_command(char **input, char *program_name)
 {
-	char *command_path, *path = get_path();
+	char *command_path, *path = get_path(), *actual_command;
 	path_list *directories = create_path_list(path);
 
 	if (input == NULL || *input == NULL ||
@@ -30,8 +30,15 @@ void execute_command(char **input, char *program_name)
 	}
 
 	else if (strncmp(input[0], "/bin/", 5) == 0)
-		execve(input[0], input, environ);
-
+	{
+		actual_command = input[0] + 5;
+		if (access(actual_command, X_OK) == 0)
+		{
+			execve(input[0], input, environ);
+		}
+		else
+			fprintf(stderr, "%s: 1: %s: not found\n", program_name, actual_command);
+	}
 	else
 	{
 		fprintf(stderr, "%s: 1: %s: not found\n", program_name, *input);
